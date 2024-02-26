@@ -1,6 +1,6 @@
 {
   "name": "aselect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Customizable dropdown select component for React applications",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -61,6 +61,7 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.1"
   }
 }
