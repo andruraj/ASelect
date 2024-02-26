@@ -1,3 +1,4 @@
+import React from "react";
 import { twMerge } from "tailwind-merge";
 import PropTypes from "prop-types";
 
@@ -5,7 +6,7 @@ import PropTypes from "prop-types";
 `direction` and `className`. */
 /**
  *
- * @param {{direction: "left" | "right" | "up" | "down", className: string}} params
+ * @param {{direction: "left" | "right" | "up" | "down", className?: string}} params
  * @returns
  */
 export const Arrow = ({ direction, className }) => (

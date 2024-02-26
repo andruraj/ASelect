@@ -24,6 +24,12 @@ export const Portal = ({ id, children }) => {
     if (typeof document === "object") {
       elRef.current = document.createElement("div");
 
+      if (!document.querySelector("#portal-root")) {
+        const root = document.createElement("div");
+        root.setAttribute("id", "portal-root");
+        document.body.append(root);
+      }
+
       portalRoot = document.querySelector("#portal-root");
     }
 
