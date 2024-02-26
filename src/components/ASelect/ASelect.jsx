@@ -95,18 +95,21 @@ const Select = ({
 
   useEffect(() => {
     if (!!optionsRef.current && !!currentOption) {
-      const selectedElement = optionsRef.current.querySelector(
-        `[data-key="${currentOption.match(/_group_(.+)/)[1]}"]`
-      );
+      const matchResult = currentOption.match(/_group_(.+)/);
+      if (matchResult) {
+        const selectedElement = optionsRef.current.querySelector(
+          `[data-key="${matchResult[1]}"]`
+        );
 
-      if (selectedElement) {
-        selectedElement.scrollIntoView({
-          behavior: "instant",
-          block: "nearest",
-        });
+        if (selectedElement) {
+          selectedElement.scrollIntoView({
+            behavior: "instant",
+            block: "nearest",
+          });
+        }
       }
     }
-  }, [currentOption]);
+  }, [currentOption, optionsRef]);
 
   useEffect(() => {
     setState((prevState) => ({
@@ -168,8 +171,8 @@ const Select = ({
         }));
         break;
       case "Enter":
-        e.preventDefault();
       case " ":
+        e.preventDefault();
         if (!isEmpty(currentOption)) {
           const currentOptionValue = isGrouped
             ? currentOption.match(/_group_(.+)/)[1]
@@ -205,6 +208,12 @@ const Select = ({
     }
   };
 
+  /**
+   *
+   * @param {any} item
+   * @param {any} e
+   * @param {string | undefined | null} itemKeyProp
+   */
   const handleOptionClick = (item, e, itemKeyProp = undefined) => {
     e.preventDefault();
     e.stopPropagation();
@@ -286,14 +295,20 @@ const Select = ({
                   open: true,
                 }));
 
-                const currentOptionValue = isGrouped
-                  ? currentOption.match(/_group_(.+)/)[1]
-                  : currentOption;
+                let currentOptionValue = "";
+                if (isGrouped && currentOption) {
+                  const matchResult = currentOption.match(/_group_(.+)/);
+                  currentOptionValue = matchResult ? matchResult[1] : "";
+                } else {
+                  currentOptionValue = currentOption || "";
+                }
+
                 onChange(
                   currentOptionValue,
                   isGrouped
                     ? options.filter(
                         (g) =>
+                          currentOption &&
                           g.groupName === currentOption.match(/(.+)_group_/)[1]
                       )
                     : currentOptionValue,
@@ -352,11 +367,13 @@ const Select = ({
             className="flex flex-col w-full absolute bg-white text-black border"
             style={{
               top:
-                containerRef.current.getBoundingClientRect().bottom + 2 + "px",
-              left: containerRef.current.getBoundingClientRect().left + "px",
+                containerRef.current?.getBoundingClientRect()?.bottom +
+                2 +
+                "px",
+              left: containerRef.current?.getBoundingClientRect()?.left + "px",
               width:
                 width ??
-                containerRef.current.getBoundingClientRect().width + "px",
+                containerRef.current?.getBoundingClientRect()?.width + "px",
               maxHeight: "200px",
               overflowY: "auto",
               zIndex: zIndex ?? 1,
@@ -427,9 +444,15 @@ const Select = ({
                         : ""
                     )}
                     onClick={(e) => handleOptionClick(item, e, keyProp)}
-                    data-key={typeof item === "object" ? item[keyProp] : item}
+                    data-key={
+                      typeof item === "object" && !isEmpty(keyProp)
+                        ? item[keyProp]
+                        : item
+                    }
                   >
-                    {typeof item === "object" ? item[keyProp] : item}
+                    {typeof item === "object" && !isEmpty(keyProp)
+                      ? item[keyProp]
+                      : item}
                   </div>
                 ))}
           </div>

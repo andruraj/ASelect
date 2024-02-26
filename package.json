@@ -1,6 +1,6 @@
 {
   "name": "aselect",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "Customizable dropdown select component for React applications",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
