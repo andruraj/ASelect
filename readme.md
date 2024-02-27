@@ -28,35 +28,45 @@ import { ASelect } from "ASelect";
 
 #### Basic Usage
 
+![Output](wK.png)
+
 ```javascript
 <ASelect
-  value={selectedValue}
-  onChange={handleChange}
+  value={value}
   options={["Option 1", "Option 2", "Option 3"]}
+  onChange={(selectedOption, selectedOptionObject, currentSearchString) =>
+    setValue(selectedOption)
+  }
 />
 ```
 
 #### Example with Array of Objects (with keyProp)
 
+![Output 1 - keyProp="label"](wK.png) ![Output 2 - keyProp="id](wK1.png)
+
 ```javascript
 <ASelect
-  value={selectedValue}
-  onChange={handleChange}
+  value={value}
   options={[
     { id: 1, label: "Option 1" },
     { id: 2, label: "Option 2" },
     { id: 3, label: "Option 3" },
   ]}
-  keyProp="id"
+  keyProp="label"
+  onChange={(selectedOption, selectedOptionObject, currentSearchString) => {
+    setValue(selectedOption);
+    setCurrentObject(selectedOptionObject);
+  }}
 />
 ```
 
-#### Example with Grouped Options
+#### Basic Example with Grouped Options
+
+![Output](BGO.png)
 
 ```javascript
 <ASelect
-  value={selectedValue}
-  onChange={handleChange}
+  value={value}
   options={[
     {
       groupName: "Group 1",
@@ -67,56 +77,65 @@ import { ASelect } from "ASelect";
       options: ["Option 3", "Option 4"],
     },
   ]}
-  keyProp="id"
+  onChange={(selectedOption, selectedOptionObject, currentSearchString) =>
+    setValue(selectedOption)
+  }
+/>
+```
+
+#### Advanced Example with Grouped Options
+
+![Output](AGO.png)
+
+```javascript
+<ASelect
+  value={value}
+  options={[
+    {
+      groupName: "ID Group",
+      options: [
+        { id: 1, label: "Option 1" },
+        { id: 2, label: "Option 2" },
+        { id: 3, label: "Option 3" },
+      ],
+      keyProp: "id",
+    },
+    {
+      groupName: "Label Group",
+      options: [
+        { id: 1, label: "Option 1" },
+        { id: 2, label: "Option 2" },
+        { id: 3, label: "Option 3" },
+      ],
+      keyProp: "label",
+    },
+  ]}
+  onChange={(selectedOption, selectedOptionObject, currentSearchString) =>
+    setValue(selectedOption)
+  }
 />
 ```
 
 ### Props
 
-| Prop        | Type             | Default     | Description                                                                                                       |
-| ----------- | ---------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
-| value       | string           |             | The currently selected value.                                                                                     |
-| onChange    | function         |             | Callback function invoked when a new value is selected.                                                           |
-| options     | array            |             | List of options to display in the dropdown.                                                                       |
-| keyProp     | string           |             | Property to be used as a key within the objects of the options list. Mandatory if options is an array of objects. |
-| searchable  | boolean          | true        | Boolean indicating if the dropdown is searchable.                                                                 |
-| placeholder | string           | "Search..." | Placeholder text for the input field.                                                                             |
-| disabled    | boolean          |             | Disables the select component.                                                                                    |
-| width       | string or number |             | Width of the select component.                                                                                    |
-| zIndex      | number           | 1           | z-index for the dropdown.                                                                                         |
-| fontSize    | number           | 16          | Font size for the select component.                                                                               |
-| required    | boolean          | false       | Indicates whether the select component is required.                                                               |
+| Prop     | Type             | Default | Description                   |
+| -------- | ---------------- | ------- | ----------------------------- |
+| value    | string           |         | The currently selected value. |
+| onChange | (selectedOption, |
 
-### Running Locally
+              selectedOptionObject,
+              currentSearchString) => {}         |             | Callback function invoked when a new value is selected.                                                           |
 
-To run the `ASelect` component locally on your machine, follow these steps:
-
-1. Clone the repository from GitHub:
-
-```bash
-git clone https://github.com/<username>/ASelect.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd ASelect
-```
-
-3. Install dependencies:
-
-```bash
-npm install
-```
-
-4. Start the development server:
-
-```bash
-npm start
-```
-
-5. You can now access the component at `http://localhost:3000` in your web browser.
+| options | array | | List of options to display in the dropdown. |
+| keyProp | string | | Property to be used as a key within the objects of the options list. Mandatory if options is an array of objects. |
+| searchable | boolean | true | Boolean indicating if the dropdown is searchable. |
+| placeholder | string | "Search..." | Placeholder text for the input field. |
+| disabled | boolean | | Disables the select component. |
+| width | string or number | | Width of the select component. |
+| zIndex | number | 1 | z-index for the dropdown. |
+| fontSize | number | 16 | Font size for the select component. |
+| required | boolean | false | Indicates whether the select component is required. |
 
 ### Conclusion
 
-With the `ASelect` component, you can easily add customizable dropdown select functionality to your React applications. Choose from a variety of options including array of strings, array of objects with keyProp, and grouped options to suit your needs. Follow the documentation to install and use the component in your project, and don't forget to run it locally for testing and development purposes.
+With the `ASelect` component, you can easily add customizable dropdown select functionality to your React applications. Choose from a variety of options including array of strings, array of objects with keyProp, and grouped options to suit your needs. Follow the documentation to install and use the component in your project for testing and development purposes.
