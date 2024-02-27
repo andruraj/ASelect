@@ -38,7 +38,8 @@ import { ASelect } from "ASelect";
 />
 ```
 
-##### Output - <img src="exampleImgs/wK.png" width="200" />
+##### Output
+<img src="exampleImgs/wK.png" width="200" />
 
 #### Example with Array of Objects (with keyProp)
 
@@ -58,9 +59,11 @@ import { ASelect } from "ASelect";
 />
 ```
 
-##### Output 1 (keyProp="label") - <img src="exampleImgs/wK.png" width="200" />
+##### Output 1 (keyProp="label")
+<img src="exampleImgs/wK.png" width="200" />
 
-##### Output 2 (keyProp="id") - <img src="exampleImgs/wK1.png" width="200" />
+##### Output 2 (keyProp="id")
+<img src="exampleImgs/wK1.png" width="200" />
 
 #### Basic Example with Grouped Options
 
@@ -83,7 +86,8 @@ import { ASelect } from "ASelect";
 />
 ```
 
-##### Output - <img src="exampleImgs/BGO.png" width="200" />
+##### Output
+<img src="exampleImgs/BGO.png" width="200" />
 
 #### Advanced Example with Grouped Options
 
@@ -116,7 +120,8 @@ import { ASelect } from "ASelect";
 />
 ```
 
-##### Output - <img src="exampleImgs/AGO.png" width="200" />
+##### Output
+<img src="exampleImgs/AGO.png" width="200" />
 
 ### Props
 
