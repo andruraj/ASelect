@@ -85,7 +85,8 @@ import { ASelect } from "ASelect";
 
 #### Advanced Example with Grouped Options
 
-![Output](exampleImgs/AGO.png)
+<!-- ![Output](exampleImgs/AGO.png) -->
+<img src="exampleImgs/AGO.png" width="200" />
 
 ```javascript
 <ASelect
